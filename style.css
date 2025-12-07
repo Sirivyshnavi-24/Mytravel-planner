@@ -1,30 +1,23 @@
-/* Custom Glassmorphism Styles */
+/* Core Styling */
 body {
     background-color: #1a1a1a;
     font-family: 'Poppins', sans-serif;
 }
 
-/* Background Animation */
+/* Background Logic for App */
 .bg-image {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2021&q=80');
     background-size: cover;
     background-position: center;
     z-index: -2;
 }
-
 .bg-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8));
-    backdrop-filter: blur(8px); /* Blur effect */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+    backdrop-filter: blur(5px);
     z-index: -1;
 }
 
@@ -32,34 +25,33 @@ body {
 .glass-panel {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Pill Buttons */
+/* Pill Buttons (Inactive) */
 .pill {
     background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
     padding: 8px 16px;
     border-radius: 50px;
     cursor: pointer;
-    border: 1px solid transparent;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
-
-.pill:hover, .pill.active {
-    background: #ff4757;
-    border-color: #ff6b81;
+.pill:hover {
+    background: rgba(255,255,255,0.2);
 }
 
-/* Scrollbar Hiding */
-::-webkit-scrollbar {
-    width: 8px;
+/* Pill Active State (Selected) */
+.pill-active {
+    background-color: #ff4757 !important;
+    border-color: #ff4757 !important;
+    color: white;
+    transform: scale(1.05);
 }
-::-webkit-scrollbar-track {
-    background: #2f3542; 
-}
-::-webkit-scrollbar-thumb {
-    background: #ff4757; 
-    border-radius: 4px;
-}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #2f3542; }
+::-webkit-scrollbar-thumb { background: #ff4757; border-radius: 4px; }
