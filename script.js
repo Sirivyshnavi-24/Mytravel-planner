@@ -1,22 +1,18 @@
-// Navigation Logic - Handles Page Switching
+// Navigation Logic
 function showPage(pageId) {
-    // Hide all pages
     const pages = document.querySelectorAll('.page-section');
     pages.forEach(page => {
         page.classList.add('hidden');
     });
 
-    // Show selected page
     const selectedPage = document.getElementById(pageId);
     if (selectedPage) {
         selectedPage.classList.remove('hidden');
     }
-    
-    // Smooth scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Itinerary Generator Logic
+// Itinerary Generator
 function generateItinerary() {
     const resultContainer = document.getElementById('itinerary-result');
     resultContainer.innerHTML = '<p class="text-center animate-pulse">AI is generating your plan...</p>';
@@ -47,7 +43,7 @@ function generateItinerary() {
     }, 1000);
 }
 
-// Login Logic
+// Login
 function handleLogin(e) {
     e.preventDefault();
     const button = e.target.querySelector('button[type="submit"]');
@@ -64,7 +60,24 @@ function handleLogin(e) {
     }, 1500);
 }
 
-// Payment Logic
+// Registration
+function handleRegister(e) {
+    e.preventDefault();
+    const button = e.target.querySelector('button[type="submit"]');
+    const originalText = button.innerText;
+
+    button.innerText = "Creating Account...";
+    button.classList.add('opacity-75');
+
+    setTimeout(() => {
+        alert("Account Created Successfully! Please Login.");
+        showPage('login');
+        button.innerText = originalText;
+        button.classList.remove('opacity-75');
+    }, 1500);
+}
+
+// Payment
 function processPayment(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
@@ -82,3 +95,19 @@ function processPayment(e) {
         btn.classList.remove('bg-gray-500');
     }, 2000);
 }
+
+// Contact Form (NEW)
+function handleContact(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+
+    btn.innerText = "Sending...";
+    
+    setTimeout(() => {
+        alert("Message Sent! We will contact you shortly.");
+        e.target.reset();
+        btn.innerText = originalText;
+    }, 1500);
+}
+
