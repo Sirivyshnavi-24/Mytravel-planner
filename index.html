@@ -80,12 +80,10 @@
                 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="glass-panel p-8 rounded-3xl h-fit">
                         <h3 class="text-xl font-bold mb-4">Trip Settings</h3>
-                        
                         <div class="bg-white/10 p-3 rounded-lg mb-4">
                             <span class="text-xs opacity-70 block">Planning For:</span>
                             <span id="planner-destination" class="text-lg font-bold text-brand">Anywhere</span>
                         </div>
-
                         <label class="block text-sm opacity-80 mt-4">Budget: <span id="budget-disp" class="text-brand font-bold">$1000</span></label>
                         <input type="range" min="100" max="5000" value="1000" class="w-full accent-brand mt-2" oninput="document.getElementById('budget-disp').innerText = '$'+this.value">
                         
@@ -98,11 +96,10 @@
                         </div>
                         <button onclick="generateItinerary()" class="w-full bg-brand py-3 rounded-xl font-bold mt-6 shadow-lg">Generate Plan</button>
                     </div>
-                    
                     <div class="md:col-span-2 space-y-4" id="itinerary-result">
                         <div class="glass-panel p-6 rounded-2xl text-center opacity-60">
                             <i class="fa-solid fa-map-location-dot text-4xl mb-2"></i>
-                            <p>Select a destination from 'Explore' or choose interests to generate a plan.</p>
+                            <p>Select a destination or interests to generate a plan.</p>
                         </div>
                     </div>
                 </div>
@@ -212,9 +209,35 @@
             </div>
             <div class="p-8">
                 <p id="modal-desc" class="opacity-80 mb-6 text-lg">Description...</p>
+                
+                <h3 class="text-xl font-bold mb-4 text-brand">Location Map:</h3>
+                <div class="w-full h-48 rounded-xl overflow-hidden mb-6 bg-white/10">
+                    <iframe id="modal-map" width="100%" height="100%" frameborder="0" style="border:0" src=""></iframe>
+                </div>
+
                 <h3 class="text-xl font-bold mb-4 text-brand">Famous Places:</h3>
                 <div id="modal-places" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 <button id="modal-plan-btn" onclick="" class="w-full bg-brand mt-8 py-3 rounded-xl font-bold shadow-lg">Plan This Trip</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-[300]">
+        <button onclick="toggleChat()" class="w-14 h-14 bg-brand rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition animate-bounce">
+            <i class="fa-solid fa-robot text-2xl"></i>
+        </button>
+
+        <div id="chatbot-window" class="hidden absolute bottom-16 right-0 w-80 h-96 glass-panel rounded-2xl flex flex-col overflow-hidden bg-gray-900">
+            <div class="bg-brand p-4 font-bold flex justify-between items-center">
+                <span>AI Travel Assistant</span>
+                <i class="fa-solid fa-times cursor-pointer" onclick="toggleChat()"></i>
+            </div>
+            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-sm">
+                <div class="bg-white/10 p-2 rounded-lg self-start max-w-[80%]">Hello! How can I help you today? 🤖</div>
+            </div>
+            <div class="p-3 bg-white/5 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask about places, budget..." class="w-full bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-xs outline-none focus:border-brand" onkeypress="handleChatInput(event)">
+                <button onclick="sendMessage()" class="bg-brand px-3 rounded-lg"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
