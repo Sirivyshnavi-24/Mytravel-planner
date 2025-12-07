@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script>
         tailwind.config = {
             theme: { extend: { colors: { brand: '#ff4757', secondary: '#2f3542' }, fontFamily: { sans: ['Poppins', 'sans-serif'] } } }
@@ -27,8 +26,7 @@
         <div class="w-full md:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
             <div id="login-form" class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl">
                 <h2 class="text-3xl font-bold mb-2 text-gray-800">Welcome Back 👋</h2>
-                <p class="text-gray-500 mb-8">Login to explore the world.</p>
-                <form onsubmit="handleLogin(event)" class="space-y-5">
+                <form onsubmit="handleLogin(event)" class="space-y-5 mt-6">
                     <input type="text" placeholder="Email" class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-brand">
                     <input type="password" placeholder="Password" class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-brand">
                     <button type="submit" class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-red-600 transition shadow-lg">Login</button>
@@ -82,20 +80,30 @@
                 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="glass-panel p-8 rounded-3xl h-fit">
                         <h3 class="text-xl font-bold mb-4">Trip Settings</h3>
+                        
+                        <div class="bg-white/10 p-3 rounded-lg mb-4">
+                            <span class="text-xs opacity-70 block">Planning For:</span>
+                            <span id="planner-destination" class="text-lg font-bold text-brand">Anywhere</span>
+                        </div>
+
                         <label class="block text-sm opacity-80 mt-4">Budget: <span id="budget-disp" class="text-brand font-bold">$1000</span></label>
                         <input type="range" min="100" max="5000" value="1000" class="w-full accent-brand mt-2" oninput="document.getElementById('budget-disp').innerText = '$'+this.value">
                         
                         <label class="block text-sm opacity-80 mt-6 mb-2">Interests</label>
                         <div class="flex flex-wrap gap-2">
-                            <button class="pill" onclick="toggleInterest(this)">Adventure 🧗</button>
-                            <button class="pill" onclick="toggleInterest(this)">Relaxation 💆‍♂️</button>
-                            <button class="pill" onclick="toggleInterest(this)">Food 🍜</button>
-                            <button class="pill" onclick="toggleInterest(this)">History 🏛️</button>
+                            <button class="pill" data-interest="Adventure" onclick="toggleInterest(this)">Adventure 🧗</button>
+                            <button class="pill" data-interest="Relaxation" onclick="toggleInterest(this)">Relaxation 💆‍♂️</button>
+                            <button class="pill" data-interest="Food" onclick="toggleInterest(this)">Food 🍜</button>
+                            <button class="pill" data-interest="History" onclick="toggleInterest(this)">History 🏛️</button>
                         </div>
                         <button onclick="generateItinerary()" class="w-full bg-brand py-3 rounded-xl font-bold mt-6 shadow-lg">Generate Plan</button>
                     </div>
+                    
                     <div class="md:col-span-2 space-y-4" id="itinerary-result">
-                        <div class="glass-panel p-6 rounded-2xl text-center opacity-60">Your itinerary will appear here.</div>
+                        <div class="glass-panel p-6 rounded-2xl text-center opacity-60">
+                            <i class="fa-solid fa-map-location-dot text-4xl mb-2"></i>
+                            <p>Select a destination from 'Explore' or choose interests to generate a plan.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -118,16 +126,6 @@
                             <h3 class="text-xl font-bold">Himalayas</h3>
                             <div class="flex justify-between items-center mt-4">
                                 <span class="text-brand font-bold">$850</span>
-                                <button onclick="showPage('payment')" class="bg-white text-black px-4 py-2 rounded-full text-sm font-bold">Book</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="glass-panel rounded-3xl overflow-hidden hover:shadow-2xl transition">
-                        <img src="https://images.unsplash.com/photo-1499363536502-87642509e31b?w=800" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold">Egypt</h3>
-                            <div class="flex justify-between items-center mt-4">
-                                <span class="text-brand font-bold">$1,500</span>
                                 <button onclick="showPage('payment')" class="bg-white text-black px-4 py-2 rounded-full text-sm font-bold">Book</button>
                             </div>
                         </div>
@@ -180,7 +178,6 @@
                     <div class="glass-panel p-8 rounded-3xl">
                         <form onsubmit="handleContact(event)" class="space-y-4">
                             <input type="text" placeholder="Name" class="w-full bg-white/10 rounded-xl px-4 py-3 outline-none text-white">
-                            <input type="email" placeholder="Email" class="w-full bg-white/10 rounded-xl px-4 py-3 outline-none text-white">
                             <textarea rows="4" placeholder="Message" class="w-full bg-white/10 rounded-xl px-4 py-3 outline-none text-white"></textarea>
                             <button type="submit" class="w-full bg-brand py-3 rounded-xl font-bold shadow-lg">Send</button>
                         </form>
@@ -198,7 +195,6 @@
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-brand"><i class="fa-brands fa-instagram text-xl"></i></a>
                     <a href="#" class="hover:text-brand"><i class="fa-brands fa-twitter text-xl"></i></a>
-                    <a href="#" class="hover:text-brand"><i class="fa-brands fa-facebook text-xl"></i></a>
                 </div>
             </div>
         </footer>
@@ -218,7 +214,7 @@
                 <p id="modal-desc" class="opacity-80 mb-6 text-lg">Description...</p>
                 <h3 class="text-xl font-bold mb-4 text-brand">Famous Places:</h3>
                 <div id="modal-places" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-                <button onclick="closeCountryDetails(); showPage('planner')" class="w-full bg-brand mt-8 py-3 rounded-xl font-bold shadow-lg">Plan This Trip</button>
+                <button id="modal-plan-btn" onclick="" class="w-full bg-brand mt-8 py-3 rounded-xl font-bold shadow-lg">Plan This Trip</button>
             </div>
         </div>
     </div>
