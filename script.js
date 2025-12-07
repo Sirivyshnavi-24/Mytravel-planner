@@ -110,4 +110,3 @@ function handleContact(e) {
         btn.innerText = originalText;
     }, 1500);
 }
-
